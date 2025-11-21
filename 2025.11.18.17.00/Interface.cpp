@@ -306,3 +306,12 @@ void Interface::totalCheckInfo(int amount, int count) {
 		cout << "현재까지 입력된 수표의 총액:  " << amount << "원\n 현재까지 입력된 수표의 총 장수: " << count << "장\n";
 	}
 }
+
+
+void Interface::wait() {
+    cout << "Press Enter to continue...";
+    // 이미 버퍼가 비워져 있다고 가정하거나, 안전하게 처리
+    // cin.ignore가 필요한 상황인지에 따라 다르지만, 보통 getline을 씀
+    char temp;
+    cin.get(temp); 
+}
