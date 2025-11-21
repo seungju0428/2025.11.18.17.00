@@ -12,12 +12,12 @@ void DepositTransaction::run() {
 	case 2:
 		handleCheckDeposit();
 	}
-	// 2. 수수료 현금으로 받기
+	// 2. 수수료 현금으로 받기 (비주거래 은행 1,000원)
 	// 3. ATM 보유 현금 업데이트
 	// 4. 계좌 잔액 증가
 	// 5. 결과 출력
 	// 6. Account의 거래 내역 업뎃
-ATM의 거래 내역 업뎃
+	// 7. ATM의 거래 내역 업뎃
 }
 
 
