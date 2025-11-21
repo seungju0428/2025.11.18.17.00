@@ -4,26 +4,27 @@
 #include <map>
 #include <string>
 #include <vector>
-class ATM;   // include ¼ø¼­ ¹®Á¦·Î ÀÎÇØ Àü¹æ ¼±¾ğ(Forward Declaration)
+class ATM;   // include ìˆœì„œ ë¬¸ì œë¡œ ì¸í•´ ì „ë°© ì„ ì–¸(Forward Declaration)
 using namespace std;
 
 class Interface {
 private:
-	map<string, map<string, string>> msgMap; // ATMÀÇ ¾ğ¾î°¡ Á¤ÇØÁø ÈÄ¿¡ »ç¿ëÇÒ ¸Ş¼¼Áö ¸Ê
+	map<string, map<string, string>> msgMap; // ATMì˜ ì–¸ì–´ê°€ ì •í•´ì§„ í›„ì— ì‚¬ìš©í•  ë©”ì„¸ì§€ ë§µ
 
 public:
-	Interface(); // »ı¼ºÀÚ
+	Interface(); // ìƒì„±ì
 
-	// ¸Ş¼¼Áö ¸Ê¿¡ ¸Ş¼¼Áö Ãß°¡
+	// ë©”ì„¸ì§€ ë§µì— ë©”ì„¸ì§€ ì¶”ê°€
 	void addMessages();
 	void addMainMenu(const vector<ATM*>& allATMs);
 	void addATMWelcome(const ATM* atm);
 	void addLanguageModeNotification(string languageMode);
 
-	// ¸Ş¼¼Áö ¸Ê ¾ÈÀÇ ¸Ş¼¼Áö Ãâ·Â
+	// ë©”ì„¸ì§€ ë§µ ì•ˆì˜ ë©”ì„¸ì§€ ì¶œë ¥
 	void displayMessage(string msgKey);
+	void displayErrorMessage(string msgKey);
 
-	// ±âÅ¸ ÇÔ¼ö
+	// ê¸°íƒ€ í•¨ìˆ˜
 	int inputInt(string msgKey);
 	long inputCheckAmount(string msgKey);
 	void totalCheckInfo(int amount, int count);
