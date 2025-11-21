@@ -11,13 +11,15 @@ private:
     int balance;
     string cardNumber;
     string cardPassword;
-    string transactionHistories; // °Å·¡ ³»¿ª ¾î¶² ±¸Á¶·Î ÀúÀåÇÒÁö °í¹Î ÇÊ¿ä
+    string transactionHistories; // ê±°ë˜ ë‚´ì—­ ì–´ë–¤ êµ¬ì¡°ë¡œ ì €ì¥í• ì§€ ê³ ë¯¼ í•„ìš”
 
 public:
-    Account(const string& bank, const string& user, const string& accNum, int bal, const string& cardNum, const string& cardPw, const string& transactionHistory); // »ı¼ºÀÚ
+    Account(const string& bank, const string& user, const string& accNum, int bal, const string& cardNum, const string& cardPw, const string& transactionHistory); // ìƒì„±ì
     string getAccountNumber() { return accountNumber; }
     string getCardNumber() { return cardNumber; }
     string getCardPassword() { return cardPassword; }
+    bool addFunds(long amount);                        // ì…ê¸ˆ
+    bool deductFunds(long amount);                       // ì¶œê¸ˆ
 };
 
 #endif
