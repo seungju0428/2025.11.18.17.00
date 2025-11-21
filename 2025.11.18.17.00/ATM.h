@@ -1,10 +1,18 @@
 #ifndef ATM_H
 #define ATM_H
 #include <string>
-class Initializer; // inlcude ¹®Á¦·Î Àü¹æ ¼±¾ğ
+class Initializer; // inlcude ë¬¸ì œë¡œ ì „ë°© ì„ ì–¸
 #include "Bank.h"
 #include "Interface.h"
 using namespace std;
+
+// ëˆ êµ¬ì¡°
+struct CashDenominations {
+    int c50k = 0;
+    int c10k = 0;
+    int c5k = 0;
+    int c1k = 0;
+};
 
 class ATM {
 private:    
@@ -12,13 +20,13 @@ private:
     string serialNumber;
     string type;
     string languageMode;
-    int c50k; // µ· °ü·ÃµÈ °Å °Å·¡ ÆÄÆ® ¸¸Áú ¶§ ¼öÁ¤ÇØ¾ß ÇÔ
+    int c50k; // ëˆ ê´€ë ¨ëœ ê±° ê±°ë˜ íŒŒíŠ¸ ë§Œì§ˆ ë•Œ ìˆ˜ì •í•´ì•¼ í•¨
     int c10k;
     int c5k;
     int c1k;
-    string adminCardNumber; // 0000-0000-0000 (°í°´ÀÇ Ä«µå ¹øÈ£¶û ¾Æ¿¹ ´Ù¸¥ ±¸Á¶·Î ¸¸µå´Â °Ô ¾ÈÀüÇÏ·Á³ª? ex. 00-00-00)
+    string adminCardNumber; // 0000-0000-0000 (ê³ ê°ì˜ ì¹´ë“œ ë²ˆí˜¸ë‘ ì•„ì˜ˆ ë‹¤ë¥¸ êµ¬ì¡°ë¡œ ë§Œë“œëŠ” ê²Œ ì•ˆì „í•˜ë ¤ë‚˜? ex. 00-00-00)
     string atmTransactionHistory;
-    int index; // ¼¼¼Ç ±â·Ï °ü·ÃµÈ ºÎºĞ¿¡¼­ ¾²·Á³ª?
+    int index; // ì„¸ì…˜ ê¸°ë¡ ê´€ë ¨ëœ ë¶€ë¶„ì—ì„œ ì“°ë ¤ë‚˜?
     Initializer* pInit;
     Interface& ui;
 public:
@@ -37,6 +45,10 @@ public:
     bool handleUserSession(string cardNumberInput);
     bool isSingle();
     bool isValid(string cardNumberInput);
+
+    // ì…ì¶œê¸ˆ
+    void addCashToATM(const CashDenominations& deposit);
+    bool dispenseCash(long amount);
 };
 
 #endif
