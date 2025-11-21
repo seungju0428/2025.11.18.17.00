@@ -7,31 +7,31 @@
 using namespace std;
 
 void Session::run() {
-	// 1. Ä«µå ºñ¹ø ÀÔ·Â ¹Ş±â
+	// 1. ì¹´ë“œ ë¹„ë²ˆ ì…ë ¥ ë°›ê¸°
 	ui.displayMessage("EnterCardPW");
 	string cardPWInput;
-	for (int i = 0; i < 3; i++) { // ºñ¹ø ÀÔ·Â 3¹ø Á¦ÇÑ
+	for (int i = 0; i < 3; i++) { // ë¹„ë²ˆ ì…ë ¥ 3ë²ˆ ì œí•œ
 		cin >> cardPWInput;
-		// 2. Bank¿¡¼­ Ä«µå ºñ¹ø °ËÁõ
-		if (pBank->isCorrectCardPW(pAccount, cardPWInput)) { // ºñ¹ø ÀÏÄ¡
+		// 2. Bankì—ì„œ ì¹´ë“œ ë¹„ë²ˆ ê²€ì¦
+		if (pBank->isCorrectCardPW(pAccount, cardPWInput)) { // ë¹„ë²ˆ ì¼ì¹˜
 			ui.displayMessage("CorrectCardPW");
 			break;
 		}
-		else ui.displayMessage("WrongCardPW"); // Àß¸øµÈ ºñ¹ø
+		else ui.displayMessage("WrongCardPW"); // ì˜ëª»ëœ ë¹„ë²ˆ
 		if (i == 2) {
 			ui.displayMessage("PwIncorrect3Times");
 			ui.displayMessage("SessionEnd");
 			return;
 		}
 	}
-	// 3. ¼¼¼Ç Á¾·á Á¶°Ç ¸¸Á·ÇÒ ¶§±îÁö °Å·¡ ¹İº¹
+	// 3. ì„¸ì…˜ ì¢…ë£Œ ì¡°ê±´ ë§Œì¡±í•  ë•Œê¹Œì§€ ê±°ë˜ ë°˜ë³µ
 	while (true) {
-		// °Å·¡ ¸Ş´º ¶ç¿ì±â
+		// ê±°ë˜ ë©”ë‰´ ë„ìš°ê¸°
 		ui.displayMessage("SessionMenu");
-		// ÁøÇàÇÒ °Å·¡ À¯Çü ÀÔ·Â ¹Ş±â
+		// ì§„í–‰í•  ê±°ë˜ ìœ í˜• ì…ë ¥ ë°›ê¸°
 		int transactionNumberInput;
 		cin >> transactionNumberInput;
-		// ÀÔ·Â ¹ŞÀº À¯ÇüÀÇ °Å·¡ Å¬·¡½ºÀÇ run ÇÔ¼ö ½ÇÇà
+		// ì…ë ¥ ë°›ì€ ìœ í˜•ì˜ ê±°ë˜ í´ë˜ìŠ¤ì˜ run í•¨ìˆ˜ ì‹¤í–‰
 		switch (transactionNumberInput) {
 		case 1:
 			deposit->run();
@@ -43,16 +43,17 @@ void Session::run() {
 			transfer->run();
 			break;
 		}
+		continue;
 	}
 }
 
 
 
 //===================================================================
-// run ¿Ü ÇÔ¼öµé
+// run ì™¸ í•¨ìˆ˜ë“¤
 //===================================================================
 Session::Session(Bank* pBank, Account* pAccount, Interface& ui) : pBank(pBank), pAccount(pAccount), ui(ui) {
-	deposit = new DepositTransaction(ui);
+	deposit = new DepositTransaction(ui); // ì—…ìºìŠ¤íŒ…
 	withdrawal = new WithdrawalTransaction(ui);
 	transfer = new TransferTransaction(ui);
 }
