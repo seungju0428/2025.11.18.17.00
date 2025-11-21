@@ -23,7 +23,7 @@ void ATM::run() {
 		
 		// 4. 세션 시작
 		ui.displayMessage("SessionStart");
-		Session* session = new Session(pInit->findBankByCardNumber(cardNumberInput), pInit->findAccountPtrByCardNumber(cardNumberInput), ui);
+		Session* session = new Session(pInit->findBankByCardNumber(cardNumberInput), pInit->findAccountPtrByCardNumber(cardNumberInput), ui, this, pInit->getAllBanks());
 
 		// 5. 관리자 카드 vs 고객 카드
 		if (isAdmin(cardNumberInput)) { // 관리자 카드
