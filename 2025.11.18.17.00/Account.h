@@ -18,6 +18,11 @@ public:
     string getAccountNumber() { return accountNumber; }
     string getCardNumber() { return cardNumber; }
     string getCardPassword() { return cardPassword; }
+
+    string getBankName() const { return bankName; }
+    string getUserName() const { return userName; }
+    int getBalance() const { return balance; }
+    
     bool addFunds(long amount);                        // 입금
     bool deductFunds(long amount);                       // 출금
 };
