@@ -6,31 +6,37 @@ void DepositTransaction::run() {
 	ui.displayMessage("AskDepositType");
 	int choice;
 	cin >> choice;
-	switch (choice) { // 1. Çö±İ ÀÔ±İ vs ¼öÇ¥ ÀÔ±İ
+	switch (choice) { // 1. í˜„ê¸ˆ ì…ê¸ˆ vs ìˆ˜í‘œ ì…ê¸ˆ
 	case 1:
 		handleCashDeposit();
 	case 2:
 		handleCheckDeposit();
 	}
+	// 2. ìˆ˜ìˆ˜ë£Œ í˜„ê¸ˆìœ¼ë¡œ ë°›ê¸°
+	// 3. ATM ë³´ìœ  í˜„ê¸ˆ ì—…ë°ì´íŠ¸
+	// 4. ê³„ì¢Œ ì”ì•¡ ì¦ê°€
+	// 5. ê²°ê³¼ ì¶œë ¥
+	// 6. Accountì˜ ê±°ë˜ ë‚´ì—­ ì—…ëƒ
+ATMì˜ ê±°ë˜ ë‚´ì—­ ì—…ëƒ
 }
 
 
 
 //===================================================================
-// run ¿Ü ÇÔ¼öµé
+// run ì™¸ í•¨ìˆ˜ë“¤
 //===================================================================
 DepositTransaction::DepositTransaction(Interface& uiInput) : Transaction(uiInput) {}
 
 void DepositTransaction::handleCashDeposit() {
-	// 1. ±ÇÁ¾º° ¸Å¼ö ÀÔ·Â
+	// 1. ê¶Œì¢…ë³„ ë§¤ìˆ˜ ì…ë ¥
 	int cnt50k = ui.inputInt("Input50kCount");
 	int cnt10k = ui.inputInt("Input10kCount");
 	int cnt5k = ui.inputInt("Input5kCount");
 	int cnt1k = ui.inputInt("Input1kCount");
 
-	// 2. Çö±İ ÀÔ·Â Á¶°Ç °ËÁõ
+	// 2. í˜„ê¸ˆ ì…ë ¥ ì¡°ê±´ ê²€ì¦
 	int totalBills = cnt50k + cnt10k + cnt5k + cnt1k;
-	if (totalBills > 50) { ui.displayMessage("ExceedCashLimit"); return; } // Çö±İ »ğÀÔ¿¡¼­ ¿À·ù ¹ß»ıÇÏ¸é Çö±İ »ğÀÔÇÏ´Â ´Ü°è·Î µ¹¾Æ°¡´Â °Ô ³´Áö ¾Ê³ª?
+	if (totalBills > 50) { ui.displayMessage("ExceedCashLimit"); return; } // í˜„ê¸ˆ ì‚½ì…ì—ì„œ ì˜¤ë¥˜ ë°œìƒí•˜ë©´ í˜„ê¸ˆ ì‚½ì…í•˜ëŠ” ë‹¨ê³„ë¡œ ëŒì•„ê°€ëŠ” ê²Œ ë‚«ì§€ ì•Šë‚˜?
 	if (totalBills == 0) { ui.displayMessage("NoCashInserted"); return; }
 }
 
@@ -38,25 +44,25 @@ void DepositTransaction::handleCheckDeposit() {
     long totalCheckAmount = 0;
     int totalCheckCount = 0;
     ui.displayMessage("CheckInsertionRule");
-    while (true) { // 1. ¼öÇ¥ ÀÔ·Â ¹İº¹
-        // ¼öÇ¥ ±İ¾× ÀÔ·Â
+    while (true) { // 1. ìˆ˜í‘œ ì…ë ¥ ë°˜ë³µ
+        // ìˆ˜í‘œ ê¸ˆì•¡ ì…ë ¥
         long amount = ui.inputCheckAmount("EnterCheckAmount");
-        // ¼öÇ¥ À¯È¿¼º °Ë»ç
+        // ìˆ˜í‘œ ìœ íš¨ì„± ê²€ì‚¬
         if (amount == 0) break;
         if (amount < 100000) { ui.displayMessage("InvalidCheckAmount"); continue; }
-        // ÇØ´ç ¼öÇ¥ÀÇ Àå¼ö ÀÔ·Â
+        // í•´ë‹¹ ìˆ˜í‘œì˜ ì¥ìˆ˜ ì…ë ¥
         int count = ui.inputInt("EnterCheckCount");
         if (count <= 0) { ui.displayMessage("InvalidInput_Negative"); continue; }
-        // ´©Àû ¼öÇ¥ ±İ¾× ¹× Àå¼ö Ãâ·Â
+        // ëˆ„ì  ìˆ˜í‘œ ê¸ˆì•¡ ë° ì¥ìˆ˜ ì¶œë ¥
         totalCheckAmount += (amount * count);
         totalCheckCount += count;
         ui.totalCheckInfo(totalCheckAmount, totalCheckCount);
     }
-    // 2. ¼öÇ¥ ÀÔ·Â Á¶°Ç °ËÁõ
+    // 2. ìˆ˜í‘œ ì…ë ¥ ì¡°ê±´ ê²€ì¦
     if (totalCheckCount == 0) { ui.displayMessage("NoCheckInputExit"); return; }
     if (totalCheckCount > 30) { ui.displayMessage("ExceedCheckLimit"); return; }
 
-    // 3. ÀÔ·Â ¹ŞÀº ¼öÇ¥ È®ÀÎ ¸Ş½ÃÁö Ãâ·Â
+    // 3. ì…ë ¥ ë°›ì€ ìˆ˜í‘œ í™•ì¸ ë©”ì‹œì§€ ì¶œë ¥
     cout << "---------------------------------" << endl;
     ui.totalCheckInfo(totalCheckAmount, totalCheckCount);
     ui.displayMessage("CheckInsertionConfirm");
