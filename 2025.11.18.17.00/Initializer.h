@@ -12,15 +12,15 @@ using namespace std;
 
 class Initializer {
 private:
-    map<string, Bank*> allBanks; // key: ÀºÇà ÀÌ¸§
+    // map<string, Bank*> allBanks; // key: ì€í–‰ ì´ë¦„
     vector<ATM*> allATMs; // element: ATM pointer
     Interface& ui;
 public:
     void run();
-
-    Initializer(ifstream& fin, Interface& uiInput); // »ı¼ºÀÚ
+    map<string, Bank*>& getAllBanks() { return allBank; }
+    Initializer(ifstream& fin, Interface& uiInput); // ìƒì„±ì
     ATM* findATMBySerialNumber(string serialNumberInput);
-    Bank* findBankByCardNumber(string cardNumberInput); // ATM¿¡¼­ »ç¿ë
+    Bank* findBankByCardNumber(string cardNumberInput); // ATMì—ì„œ ì‚¬ìš©
     Account* findAccountPtrByCardNumber(string cardNumberInput);
 };
 
