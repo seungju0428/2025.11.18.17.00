@@ -1,13 +1,19 @@
-#ifndef	TRANSFERTRANSACTION_H
-#define TRANSFERTRANSACTION_H
+#ifndef TRANSFER_TRANSACTION_H
+#define TRANSFER_TRANSACTION_H
 
 #include "Transaction.h"
 
+class Account;
+
 class TransferTransaction : public Transaction {
+private:
+    Account* findDestinationAccount(const string& destAccNum);
+    void processCashTransfer(long fee, Account* destAccount);
+    void processAccountTransfer(long fee, Account* destAccount);
+
 public:
-	void run() override;
-	
-	TransferTransaction(Interface& uiInput);
-};
+    TransferTransaction(Session* session);
+    void run() override;
+};    
 
 #endif
