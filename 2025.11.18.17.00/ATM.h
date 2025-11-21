@@ -1,6 +1,7 @@
 #ifndef ATM_H
 #define ATM_H
 #include <string>
+#include <algorithm>
 class Initializer; // inlcude 문제로 전방 선언
 #include "Bank.h"
 #include "Interface.h"
@@ -48,6 +49,8 @@ public:
     // 입출금
     void addCashToATM(const CashDenominations& deposit);
     bool dispenseCash(long amount);
+
+    CashDenominations getCash() const { return availableCash; }
 };
 
 #endif
