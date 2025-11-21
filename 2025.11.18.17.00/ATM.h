@@ -20,10 +20,9 @@ private:
     string serialNumber;
     string type;
     string languageMode;
-    int c50k; // 돈 관련된 거 거래 파트 만질 때 수정해야 함
-    int c10k;
-    int c5k;
-    int c1k;
+
+    CashDenominations availableCash; // 돈 파트 수정 완료
+
     string adminCardNumber; // 0000-0000-0000 (고객의 카드 번호랑 아예 다른 구조로 만드는 게 안전하려나? ex. 00-00-00)
     string atmTransactionHistory;
     int index; // 세션 기록 관련된 부분에서 쓰려나?
