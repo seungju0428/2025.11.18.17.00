@@ -23,6 +23,7 @@ public:
 	Interface& getUI() { return ui; }
 	Bank* getBank() { return pBank; }
 	Account* getAccount() { return pAccount; }
+	ATM* getATM();
 	// --
 	void run();
 };
