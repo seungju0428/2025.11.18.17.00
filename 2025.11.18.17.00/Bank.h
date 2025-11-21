@@ -8,7 +8,7 @@ using namespace std;
 class Bank {
 private:
     string bankName;
-    map<string, Account*> accounts; // key: ���¹�ȣ
+    map<string, Account*> accounts; // key: °èÁÂ¹øÈ£
 
 public:    
     Bank(const string& name);
@@ -17,6 +17,8 @@ public:
     Bank* getBankByCardNumber(string cardNumberInput);
     Account* getAccountPtrByCardNumber(string cardNumberInput);
     bool isCorrectCardPW(Account* pAccount, string cardPWInput);
+
+    Account* findAccount(string accountNumber);
 };
 
 #endif
