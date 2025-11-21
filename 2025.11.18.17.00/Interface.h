@@ -28,6 +28,9 @@ public:
 	int inputInt(string msgKey);
 	long inputCheckAmount(string msgKey);
 	void totalCheckInfo(int amount, int count);
+
+	// 화면 일시 정지. 계속하려면 엔터 누르세요 와 동일함
+	void wait();
 };
 
 #endif
