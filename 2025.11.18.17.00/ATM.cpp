@@ -150,4 +150,34 @@ void ATM::addCashToATM(const CashDenominations& deposit) {
     availableCash.c1k  += deposit.c1k;
 }
 
+bool ATM::dispenseCash(long amount) {
+    CashDenominations tempCash = availableCash;
+    long remainingAmount = amount;
 
+    // 50,000원권 계산
+    int count50k = min((long)tempCash.c50k, remainingAmount / 50000);
+    remainingAmount -= (long)count50k * 50000;
+
+    // 10,000원권 계산
+    int count10k = min((long)tempCash.c10k, remainingAmount / 10000);
+    remainingAmount -= (long)count10k * 10000;
+
+    // 5,000원권 계산
+    int count5k = min((long)tempCash.c5k, remainingAmount / 5000);
+    remainingAmount -= (long)count5k * 5000;
+
+    // 1,000원권 계산
+    int count1k = min((long)tempCash.c1k, remainingAmount / 1000);
+    remainingAmount -= (long)count1k * 1000;
+
+    // 최종 확인
+    if (remainingAmount == 0) { // 인출 성공: 실제 시재 차감
+        availableCash.c50k -= count50k;
+        availableCash.c10k -= count10k;
+        availableCash.c5k -= count5k;
+        availableCash.c1k -= count1k;
+        return true;
+    } else { // 실패: 권종 부족 또는 잔액 부족
+        return false;
+    }
+}
