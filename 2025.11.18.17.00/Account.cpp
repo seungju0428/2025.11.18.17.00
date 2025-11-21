@@ -3,7 +3,7 @@
 using namespace std;
 
 Account::Account(const string& bank, const string& user, const string& accNum, int bal, const string& cardNum, const string& cardPw, const string& transactionHistory)
-	: bankName(bank), userName(user), accountNumber(accNum), balance(bal), cardNumber(cardNum), cardPassword(cardPw), transactionHistories(transactionHistory) {} // »ý¼ºÀÚ
+	: bankName(bank), userName(user), accountNumber(accNum), balance(bal), cardNumber(cardNum), cardPassword(cardPw), transactionHistories(transactionHistory) {} // 생성자
 
 bool Account::addFunds(long amount) {
     if (amount <= 0) {
