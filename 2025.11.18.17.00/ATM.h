@@ -33,7 +33,7 @@ public:
     void run();
 
     ATM(Bank* primaryBank, const string& serial, const string& t, const string& lang, int cash50k, int cash10k, int cash5k, int cash1k, Initializer* initializer, Interface& uiInput);
-    string getPrimaryBank() const { return pPrimaryBank->getPrimaryBank(); }
+    string getPrimaryBank() const { return pPrimaryBank->getPrimaryBank(); } // return getPrimaryBank()는?
     string getSerialNumber() const { return serialNumber; }
     string getType() const { return type; }
     string getLanguageMode() const { return languageMode; }
