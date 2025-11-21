@@ -45,7 +45,7 @@ void ATM::run() {
 // run 외 함수들
 //===================================================================
 ATM::ATM(Bank* primaryBank, const string& serial, const string& t, const string& lang, int cash50k, int cash10k, int cash5k, int cash1k, Initializer* initializer, Interface& uiInput)
-	: pPrimaryBank(primaryBank), serialNumber(serial), type(t), languageMode(lang), c50k(cash50k), c10k(cash10k), c5k(cash5k), c1k(cash1k), adminCardNumber("0000-0000-0000"), atmTransactionHistory(""), pInit(initializer), ui(uiInput), index(1) {} // 생성자
+	: pPrimaryBank(primaryBank), serialNumber(serial), type(t), languageMode(lang), availableCash{cash50k, cash10k, cash5k, cash1k}, adminCardNumber("0000-0000-0000"), atmTransactionHistory(""), pInit(initializer), ui(uiInput), index(1) {} // 생성자
 
 void ATM::setLanguage() {
 	if (this->getLanguageMode() == "Bilingual") { // Bilingual
