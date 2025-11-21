@@ -1,17 +1,17 @@
-#ifndef	DEPOSITTRANSACTION_H
-#define DEPOSITTRANSACTION_H
+#ifndef DEPOSIT_TRANSACTION_H
+#define DEPOSIT_TRANSACTION_H
 
 #include "Transaction.h"
-#include "Interface.h"
 
 class DepositTransaction : public Transaction {
 private:
-public:
-	void run() override;
+    void processCashDeposit(long fee);
+    void processCheckDeposit(long fee);
 
-	DepositTransaction(Interface& uiInput);
-	void handleCashDeposit();
-	void handleCheckDeposit();
+public:
+    DepositTransaction(Session* session);
+    void run() override;
+    
 };
 
 #endif
