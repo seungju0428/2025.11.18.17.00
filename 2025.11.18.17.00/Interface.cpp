@@ -6,49 +6,49 @@
 #include "ATM.h"
 using namespace std;
 
-Interface::Interface() { addMessages(); } // »ı¼ºÀÚ
+Interface::Interface() { addMessages(); } // ìƒì„±ì
 
 
 
 //===================================================================
-// ¸Ş¼¼Áö ¸Ê¿¡ ¹®±¸ Ãß°¡ (parameter ºÒÇÊ¿ä)
+// ë©”ì„¸ì§€ ë§µì— ë¬¸êµ¬ ì¶”ê°€ (parameter ë¶ˆí•„ìš”)
 //===================================================================
 void Interface::addMessages() {
-	// ATMÀÇ ¾ğ¾î°¡ Á¤ÇØÁö±â Àü
+	// ATMì˜ ì–¸ì–´ê°€ ì •í•´ì§€ê¸° ì „
 	msgMap["InitializationStart"]["Unselected"] =
 		"======================================================================================================\n"
-		"[ System Initialization | ½Ã½ºÅÛ ÃÊ±âÈ­ ]\n"
+		"[ System Initialization | ì‹œìŠ¤í…œ ì´ˆê¸°í™” ]\n"
 		"------------------------------------------------------------------------------------------------------\n"
-		"Enter the initial configuration file path. (ÃÊ±â ¼³Á¤ ÆÄÀÏ °æ·Î¸¦ ÀÔ·ÂÇÏ¼¼¿ä.)\n"
+		"Enter the initial configuration file path. (ì´ˆê¸° ì„¤ì • íŒŒì¼ ê²½ë¡œë¥¼ ì…ë ¥í•˜ì„¸ìš”.)\n"
 		"> ";
-	msgMap["FileOpenSuccess"]["Unselected"] = "\nFile opened successfully (ÆÄÀÏ ¿­±â ¼º°ø)\n";
-	msgMap["FileOpenFail"]["Unselected"] = "\nFailed to open file (ÆÄÀÏ ¿­±â ½ÇÆĞ)\n";
+	msgMap["FileOpenSuccess"]["Unselected"] = "\nFile opened successfully (íŒŒì¼ ì—´ê¸° ì„±ê³µ)\n";
+	msgMap["FileOpenFail"]["Unselected"] = "\nFailed to open file (íŒŒì¼ ì—´ê¸° ì‹¤íŒ¨)\n";
 	msgMap["EnterATMSerialNumber"]["Unselected"] = 
-		"Enter ATM's serial number. (ATMÀÇ °íÀ¯¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.)\n"
+		"Enter ATM's serial number. (ATMì˜ ê³ ìœ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.)\n"
 		"> ";
 	msgMap["ChooseLanguage"]["Unselected"] = 
-		"Choose one language. [English/Korean] (¾ğ¾î¸¦ ¼±ÅÃÇÏ¼¼¿ä. [¿µ¾î/ÇÑ±¹¾î])\n"
+		"Choose one language. [English/Korean] (ì–¸ì–´ë¥¼ ì„ íƒí•˜ì„¸ìš”. [ì˜ì–´/í•œêµ­ì–´])\n"
 		"> ";
 
-	// ATMÀÇ ¾ğ¾î°¡ Á¤ÇØÁø ÈÄ
+	// ATMì˜ ì–¸ì–´ê°€ ì •í•´ì§„ í›„
 	msgMap["EnterCardNumber"]["English"] = 
 		"\nInsert your card into the slot and enter the card number(Include '-'). (Enter 'Back' to quit.)\n"
 		"> ";
 	msgMap["EnterCardNumber"]["Korean"] = 
-		"\nÄ«µå¸¦ ½½·Ô¿¡ »ğÀÔÇÏ°í Ä«µå ¹øÈ£('-' Æ÷ÇÔ)¸¦ ÀÔ·ÂÇÏ¼¼¿ä. (³ª°¡·Á¸é 'ÀÌÀü'À» ÀÔ·ÂÇÏ¼¼¿ä.)\n"
+		"\nì¹´ë“œë¥¼ ìŠ¬ë¡¯ì— ì‚½ì…í•˜ê³  ì¹´ë“œ ë²ˆí˜¸('-' í¬í•¨)ë¥¼ ì…ë ¥í•˜ì„¸ìš”. (ë‚˜ê°€ë ¤ë©´ 'ì´ì „'ì„ ì…ë ¥í•˜ì„¸ìš”.)\n"
 		"> ";
 
 	msgMap["CheckValidity"]["English"] = "Checking card validity... ";
-	msgMap["CheckValidity"]["Korean"] = "Ä«µå À¯È¿¼º È®ÀÎ Áß... ";
+	msgMap["CheckValidity"]["Korean"] = "ì¹´ë“œ ìœ íš¨ì„± í™•ì¸ ì¤‘... ";
 
 	msgMap["IsNotValid"]["English"] = "Card is not accepted.\n";
-	msgMap["IsNotValid"]["Korean"] = "Ä«µå »ç¿ë ºÒ°¡\n";
+	msgMap["IsNotValid"]["Korean"] = "ì¹´ë“œ ì‚¬ìš© ë¶ˆê°€\n";
 
 	msgMap["IsValid"]["English"] = "Card accepted\n";
-	msgMap["IsValid"]["Korean"] = "Ä«µå »ç¿ë °¡´É\n";
+	msgMap["IsValid"]["Korean"] = "ì¹´ë“œ ì‚¬ìš© ê°€ëŠ¥\n";
 	
 	msgMap["SessionStart"]["English"] = "Session is started.\n";
-	msgMap["SessionStart"]["Korean"] = "¼¼¼ÇÀÌ ½ÃÀÛµÇ¾ú½À´Ï´Ù.\n";
+	msgMap["SessionStart"]["Korean"] = "ì„¸ì…˜ì´ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤.\n";
 
 	msgMap["TransactionHistoryMenu"]["English"] =
 		"======================================================================================================\n"
@@ -59,36 +59,36 @@ void Interface::addMessages() {
 		"> ";
 	msgMap["TransactionHistoryMenu"]["Korean"] =
 		"======================================================================================================\n"
-		"[ °Å·¡ ³»¿ª ¸Ş´º ]\n"
+		"[ ê±°ë˜ ë‚´ì—­ ë©”ë‰´ ]\n"
 		"------------------------------------------------------------------------------------------------------\n"
-		"1. ÀÌ ATMÀÇ °Å·¡ ³»¿ª ¿­¶÷ ¹× ÃßÃâ\n"
-		"2. ³ª°¡±â\n"
+		"1. ì´ ATMì˜ ê±°ë˜ ë‚´ì—­ ì—´ëŒ ë° ì¶”ì¶œ\n"
+		"2. ë‚˜ê°€ê¸°\n"
 		"> ";
 
 	msgMap["WritingHistoryToFile"]["English"] = "Exporting transaction history to enternal file.\n";
-	msgMap["WritingHistoryToFile"]["Korean"] = "°Å·¡ ±â·ÏÀ» ¿ÜºÎ ÆÄÀÏ·Î ³»º¸³»´Â ÁßÀÔ´Ï´Ù.\n";
+	msgMap["WritingHistoryToFile"]["Korean"] = "ê±°ë˜ ê¸°ë¡ì„ ì™¸ë¶€ íŒŒì¼ë¡œ ë‚´ë³´ë‚´ëŠ” ì¤‘ì…ë‹ˆë‹¤.\n";
 
 	msgMap["FileWritingSuccess"]["English"] = "File exported successfully\n";
-	msgMap["FileWritingSuccess"]["Korean"] = "ÆÄÀÏÀ» ¼º°øÀûÀ¸·Î ³»º¸³Â½À´Ï´Ù.\n";
+	msgMap["FileWritingSuccess"]["Korean"] = "íŒŒì¼ì„ ì„±ê³µì ìœ¼ë¡œ ë‚´ë³´ëƒˆìŠµë‹ˆë‹¤.\n";
 
 	msgMap["FileWritingFailure"]["English"] = "Failed to export file\n";
-	msgMap["FileWritingFailure"]["Korean"] = "ÆÄÀÏ ³»º¸³»±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n";
+	msgMap["FileWritingFailure"]["Korean"] = "íŒŒì¼ ë‚´ë³´ë‚´ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n";
 
 	msgMap["EnterCardPW"]["English"] = 
 		"\nEnter card password\n"
 		"> ";
 	msgMap["EnterCardPW"]["Korean"] = 
-		"\nÄ«µå ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"\nì¹´ë“œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 
 	msgMap["CorrectCardPW"]["English"] = "Correct password\n";
-	msgMap["CorrectCardPW"]["Korean"] = "ºñ¹Ğ¹øÈ£ ÀÏÄ¡\n";
+	msgMap["CorrectCardPW"]["Korean"] = "ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜\n";
 
 	msgMap["WrongCardPW"]["English"] = "Wrong password\n";
-	msgMap["WrongCardPW"]["Korean"] = "Àß¸øµÈ ºñ¹Ğ¹øÈ£\n";
+	msgMap["WrongCardPW"]["Korean"] = "ì˜ëª»ëœ ë¹„ë°€ë²ˆí˜¸\n";
 
 	msgMap["PwIncorrect3Times"]["English"] = "Incorrect password entered three times in a row.\n";
-	msgMap["PwIncorrect3Times"]["Korean"] = "ºñ¹Ğ¹øÈ£°¡ 3¹ø ¿¬¼ÓÀ¸·Î Àß¸ø ÀÔ·ÂµÇ¾ú½À´Ï´Ù.\n";
+	msgMap["PwIncorrect3Times"]["Korean"] = "ë¹„ë°€ë²ˆí˜¸ê°€ 3ë²ˆ ì—°ì†ìœ¼ë¡œ ì˜ëª» ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.\n";
 
 	msgMap["SessionMenu"]["English"] = 
 		"======================================================================================================\n"
@@ -101,19 +101,19 @@ void Interface::addMessages() {
 		"> ";
 	msgMap["SessionMenu"]["Korean"] = 
 		"======================================================================================================\n"
-		"[ ¼¼¼Ç ¸Ş´º ]\n"
+		"[ ì„¸ì…˜ ë©”ë‰´ ]\n"
 		"------------------------------------------------------------------------------------------------------\n"
-		"1. ÀÔ±İ\n"
-		"2. Ãâ±İ\n"
-		"3. ÀÌÃ¼\n"
-		"°Å·¡ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"1. ì…ê¸ˆ\n"
+		"2. ì¶œê¸ˆ\n"
+		"3. ì´ì²´\n"
+		"ê±°ë˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 
 	msgMap["SessionEnd"]["English"] = "Session is ended.\n";
-	msgMap["SessionEnd"]["Korean"] = "¼¼¼ÇÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.\n";
+	msgMap["SessionEnd"]["Korean"] = "ì„¸ì…˜ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\n";
 
 	msgMap["GoBackToEnteringCardNumber"]["English"] = "Returning to the card insertion and card number entry step.\n";
-	msgMap["GoBackToEnteringCardNumber"]["Korean"] = "Ä«µå »ğÀÔ ¹× Ä«µå ¹øÈ£ ÀÔ·Â ´Ü°è·Î µ¹¾Æ°©´Ï´Ù.\n";
+	msgMap["GoBackToEnteringCardNumber"]["Korean"] = "ì¹´ë“œ ì‚½ì… ë° ì¹´ë“œ ë²ˆí˜¸ ì…ë ¥ ë‹¨ê³„ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.\n";
 	
 	msgMap["AskDepositType"]["English"] =
 		"1. Cash Deposit\n"
@@ -121,118 +121,118 @@ void Interface::addMessages() {
 		"Enter deposit type number.\n"
 		"> ";
 	msgMap["AskDepositType"]["Korean"] = 
-		"1. Çö±İ ÀÔ±İ\n"
-		"2. ¼öÇ¥ ÀÔ±İ\n"
-		"ÀÔ±İ Á¾·ù ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"1. í˜„ê¸ˆ ì…ê¸ˆ\n"
+		"2. ìˆ˜í‘œ ì…ê¸ˆ\n"
+		"ì…ê¸ˆ ì¢…ë¥˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 
 	msgMap["Input50kCount"]["English"] =
 		"Enter the number of 50000Won.\n"
 		"> ";
 	msgMap["Input50kCount"]["Korean"] =
-		"50000¿øÀÇ Àå¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"50000ì›ì˜ ì¥ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 	
 	msgMap["Input10kCount"]["English"] =
 		"Enter the number of 10000Won.\n"
 		"> ";
 	msgMap["Input10kCount"]["Korean"] =
-		"10000¿øÀÇ Àå¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"10000ì›ì˜ ì¥ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 
 	msgMap["Input5kCount"]["English"] =
 		"Enter the number of 5000Won.\n"
 		"> ";
 	msgMap["Input5kCount"]["Korean"] =
-		"5000¿øÀÇ Àå¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"5000ì›ì˜ ì¥ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 
 	msgMap["Input1kCount"]["English"] =
 		"Enter the number of 1000Won.\n"
 		"> ";
 	msgMap["Input1kCount"]["Korean"] =
-		"1000¿øÀÇ Àå¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n"
+		"1000ì›ì˜ ì¥ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n"
 		"> ";
 
 	msgMap["InvalidInput_Number"]["English"] = "Please enter number.\n";
-	msgMap["InvalidInput_Number"]["Korean"] = "¼ıÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.\n";
+	msgMap["InvalidInput_Number"]["Korean"] = "ìˆ«ìë¥¼ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.\n";
 
 	msgMap["InvalidInput_Negative"]["English"] = "Negative number can not be accepted.\n";
-	msgMap["InvalidInput_Negative"]["Korean"] = "À½¼ö´Â ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù.\n";
+	msgMap["InvalidInput_Negative"]["Korean"] = "ìŒìˆ˜ëŠ” ì…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
 
 	msgMap["ExceedCashLimit"]["English"] = "Cash insertion limit exceeded. You can insert up to 50 notes.\n";
-	msgMap["ExceedCashLimit"]["Korean"] = "Çö±İ »ğÀÔ Á¦ÇÑÀ» ÃÊ°úÇß½À´Ï´Ù. Çö±İÀº ÃÖ´ë 50Àå±îÁö¸¸ »ğÀÔÇÒ ¼ö ÀÖ½À´Ï´Ù.\n";
+	msgMap["ExceedCashLimit"]["Korean"] = "í˜„ê¸ˆ ì‚½ì… ì œí•œì„ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤. í˜„ê¸ˆì€ ìµœëŒ€ 50ì¥ê¹Œì§€ë§Œ ì‚½ì…í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.\n";
 
 	msgMap["NoCashInserted"]["English"] = "Cash is not inserted.\n";
-	msgMap["NoCashInserted"]["Korean"] = "Çö±İÀÌ »ğÀÔµÇÁö ¾Ê¾Ò½À´Ï´Ù.\n";
+	msgMap["NoCashInserted"]["Korean"] = "í˜„ê¸ˆì´ ì‚½ì…ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n";
 
-	msgMap["CheckInsertionRule"]["English"] = "¼öÇ¥ ÀÔ·Â Á¶°Ç ~~(Eng.ver)\n";
-	msgMap["CheckInsertionRule"]["Korean"] = "¼öÇ¥ ÀÔ·Â Á¶°Ç ~~\n";
+	msgMap["CheckInsertionRule"]["English"] = "ìˆ˜í‘œ ì…ë ¥ ì¡°ê±´ ~~(Eng.ver)\n";
+	msgMap["CheckInsertionRule"]["Korean"] = "ìˆ˜í‘œ ì…ë ¥ ì¡°ê±´ ~~\n";
 	
 	msgMap["EnterCheckAmount"]["English"] =
-		"¼öÇ¥ ±İ¾× ÀÔ·Â. ±×¸¸ ÀÔ·ÂÇÏ·Á¸é 0 ÀÔ·Â.(Eng.ver)\n"
+		"ìˆ˜í‘œ ê¸ˆì•¡ ì…ë ¥. ê·¸ë§Œ ì…ë ¥í•˜ë ¤ë©´ 0 ì…ë ¥.(Eng.ver)\n"
 		"> ";
 	msgMap["EnterCheckAmount"]["Korean"] = 
-		"¼öÇ¥ ±İ¾× ÀÔ·Â. ±×¸¸ ÀÔ·ÂÇÏ·Á¸é 0 ÀÔ·Â\n"
+		"ìˆ˜í‘œ ê¸ˆì•¡ ì…ë ¥. ê·¸ë§Œ ì…ë ¥í•˜ë ¤ë©´ 0 ì…ë ¥\n"
 		"> ";
 
-	msgMap["InvalidCheckAmount"]["English"] = "¼öÇ¥ ±İ¾× ÀÌ»óÇÔ¿ä;;(Eng.ver)\n";
-	msgMap["InvalidCheckAmount"]["Korean"] = "¼öÇ¥ ±İ¾× ÀÌ»óÇÔ¿ä;;\n";
+	msgMap["InvalidCheckAmount"]["English"] = "ìˆ˜í‘œ ê¸ˆì•¡ ì´ìƒí•¨ìš”;;(Eng.ver)\n";
+	msgMap["InvalidCheckAmount"]["Korean"] = "ìˆ˜í‘œ ê¸ˆì•¡ ì´ìƒí•¨ìš”;;\n";
 
 	msgMap["EnterCheckAmount"]["English"] =
-		"¼öÇ¥ Àå¼ö ÀÔ·Â(Eng.ver)\n"
+		"ìˆ˜í‘œ ì¥ìˆ˜ ì…ë ¥(Eng.ver)\n"
 		"> ";
 	msgMap["EnterCheckAmount"]["Korean"] =
-		"¼öÇ¥ Àå¼ö ÀÔ·Â\n"
+		"ìˆ˜í‘œ ì¥ìˆ˜ ì…ë ¥\n"
 		"> ";
 
-	msgMap["NoCheckInputExit"]["English"] = "¼öÇ¥ ÀÔ·Â ¾È µÊ(Eng.ver)\n";
-	msgMap["NoCheckInputExit"]["Korean"] = "¼öÇ¥ ÀÔ·Â ¾È µÊ\n";
+	msgMap["NoCheckInputExit"]["English"] = "ìˆ˜í‘œ ì…ë ¥ ì•ˆ ë¨(Eng.ver)\n";
+	msgMap["NoCheckInputExit"]["Korean"] = "ìˆ˜í‘œ ì…ë ¥ ì•ˆ ë¨\n";
 
-	msgMap["ExceedCheckLimit"]["English"] = "¼öÇ¥ Àå¼ö ³Ê¹« ¸¹ÀÌ ÀÔ·ÂµÊ(Eng.ver)\n";
-	msgMap["ExceedCheckLimit"]["Korean"] = "¼öÇ¥ Àå¼ö ³Ê¹« ¸¹ÀÌ ÀÔ·ÂµÊ\n";
+	msgMap["ExceedCheckLimit"]["English"] = "ìˆ˜í‘œ ì¥ìˆ˜ ë„ˆë¬´ ë§ì´ ì…ë ¥ë¨(Eng.ver)\n";
+	msgMap["ExceedCheckLimit"]["Korean"] = "ìˆ˜í‘œ ì¥ìˆ˜ ë„ˆë¬´ ë§ì´ ì…ë ¥ë¨\n";
 
-	msgMap["CheckInsertionConfirm"]["English"] = "¼öÇ¥ ÀÔ·Â ¿Ï·á!(Eng.ver)\n";
-	msgMap["CheckInsertionConfirm"]["Korean"] = "¼öÇ¥ ÀÔ·Â ¿Ï·á!\n";
+	msgMap["CheckInsertionConfirm"]["English"] = "ìˆ˜í‘œ ì…ë ¥ ì™„ë£Œ!(Eng.ver)\n";
+	msgMap["CheckInsertionConfirm"]["Korean"] = "ìˆ˜í‘œ ì…ë ¥ ì™„ë£Œ!\n";
 	
 }
 
 
 
 //===================================================================
-// ¸Ş¼¼Áö ¸Ê¿¡ ¹®±¸ Ãß°¡ (parameter ÇÊ¿ä)								<< Ãß°¡->Ãâ·Âº¸´Ù´Â ÀÎÀÚ·Î ¹«¾ğ°¡ ¹Ş°í ¹Ù·Î Ãâ·ÂÇÏ´Â °Å·Î °íÄ¡±â
+// ë©”ì„¸ì§€ ë§µì— ë¬¸êµ¬ ì¶”ê°€ (parameter í•„ìš”)								<< ì¶”ê°€->ì¶œë ¥ë³´ë‹¤ëŠ” ì¸ìë¡œ ë¬´ì–¸ê°€ ë°›ê³  ë°”ë¡œ ì¶œë ¥í•˜ëŠ” ê±°ë¡œ ê³ ì¹˜ê¸°
 //===================================================================
-void Interface::addMainMenu(const vector<ATM*>& allATMs) { // InitializerÀÇ run ÇÔ¼ö¿¡¼­ ½ÇÇàµÊ
+void Interface::addMainMenu(const vector<ATM*>& allATMs) { // Initializerì˜ run í•¨ìˆ˜ì—ì„œ ì‹¤í–‰ë¨
 	string message;
 	message += "======================================================================================================\n";
-	message += "[ Main Menu | ¸ŞÀÎ ¸Ş´º ]\n";
+	message += "[ Main Menu | ë©”ì¸ ë©”ë‰´ ]\n";
 	message += "------------------------------------------------------------------------------------------------------\n";
-	message += "- ATM List (ATM ¸ñ·Ï) -\n";
+	message += "- ATM List (ATM ëª©ë¡) -\n";
 	int index = 1;
 	for (ATM* atm : allATMs) {
 		message += "#" + to_string(index++) + "\n";
-		message += "Primary Bank (ÁÖ°Å·¡ÀºÇà) : " + atm->getPrimaryBank() + "\n";
-		message += "ATM Serial (ATM °íÀ¯¹øÈ£) : " + atm->getSerialNumber() + "\n";
-		message += "Type (À¯Çü)               : " + atm->getType() + "\n";
-		message += "Language (¾ğ¾î)           : " + atm->getLanguageMode() + "\n\n";
+		message += "Primary Bank (ì£¼ê±°ë˜ì€í–‰) : " + atm->getPrimaryBank() + "\n";
+		message += "ATM Serial (ATM ê³ ìœ ë²ˆí˜¸) : " + atm->getSerialNumber() + "\n";
+		message += "Type (ìœ í˜•)               : " + atm->getType() + "\n";
+		message += "Language (ì–¸ì–´)           : " + atm->getLanguageMode() + "\n\n";
 	}
 	msgMap["MainMenu"]["Unselected"] = message;
 }
-void Interface::addATMWelcome(const ATM* atm) { // ATMÀÇ run ÇÔ¼ö¿¡¼­ ½ÇÇàµÊ
+void Interface::addATMWelcome(const ATM* atm) { // ATMì˜ run í•¨ìˆ˜ì—ì„œ ì‹¤í–‰ë¨
 	string message;
 	message += "======================================================================================================\n";
 	message += "[ Welcome. ATM ";
 	message += atm->getSerialNumber();
-	message += " activated. | È¯¿µÇÕ´Ï´Ù. ATM ";
+	message += " activated. | í™˜ì˜í•©ë‹ˆë‹¤. ATM ";
 	message += atm->getSerialNumber();
-	message += "ÀÌ È°¼ºÈ­µÇ¾ú½À´Ï´Ù. ]\n";
+	message += "ì´ í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤. ]\n";
 	message += "------------------------------------------------------------------------------------------------------\n";
 	msgMap["ATMWelcome"]["Unselected"] = message;
 }
-void Interface::addLanguageModeNotification(string languageMode) { // ATMÀÇ run ÇÔ¼ö¿¡¼­ ½ÇÇàµÊ
+void Interface::addLanguageModeNotification(string languageMode) { // ATMì˜ run í•¨ìˆ˜ì—ì„œ ì‹¤í–‰ë¨
 	if (languageMode == "Bilingual") {
 		msgMap["LanguageModeNotification"]["English"] = "Language is set to English.\n";
-		msgMap["LanguageModeNotification"]["Korean"] = "¾ğ¾î°¡ ÇÑ±¹¾î·Î ¼³Á¤µÇ¾ú½À´Ï´Ù.\n";
+		msgMap["LanguageModeNotification"]["Korean"] = "ì–¸ì–´ê°€ í•œêµ­ì–´ë¡œ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤.\n";
 	}
 	else if (languageMode == "Unilingual") {
 		msgMap["LanguageModeNotification"]["English"] = "Since this is a unilingual ATM, language is set to English.\n";
@@ -242,31 +242,34 @@ void Interface::addLanguageModeNotification(string languageMode) { // ATMÀÇ run 
 
 
 //===================================================================
-// ¸Ş¼¼Áö ¸Ê ¾ÈÀÇ ¸Ş¼¼Áö Ãâ·Â
+// ë©”ì„¸ì§€ ë§µ ì•ˆì˜ ë©”ì„¸ì§€ ì¶œë ¥
 //===================================================================
 void Interface::displayMessage(string msgKey) {
 	cout << msgMap[msgKey][language];
 }
 
+void Interface::displayErrorMessage(string msgKey) {
+	cout << msgMap[msgKey][language];
+}
 
 
 //===================================================================
-// ±âÅ¸ ÇÔ¼ö 
+// ê¸°íƒ€ í•¨ìˆ˜ 
 //===================================================================
-int Interface::inputInt(string msgKey) { // Cash Deposit, Check Deposit¿¡¼­ »ç¿ë
+int Interface::inputInt(string msgKey) { // Cash Deposit, Check Depositì—ì„œ ì‚¬ìš©
 	int count;
 	while (true) {
 		cout << msgMap[msgKey][language];
 		cin >> count;
 		if (cin.fail()) {
-			cin.clear(); // ¿¡·¯ ÇÃ·¡±× ÃÊ±âÈ­--
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ¹öÆÛ ºñ¿ì±â
-			cout << msgMap["InvalidInput_Number"][language] << endl; // "¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä."
+			cin.clear(); // ì—ëŸ¬ í”Œë˜ê·¸ ì´ˆê¸°í™”--
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ë²„í¼ ë¹„ìš°ê¸°
+			cout << msgMap["InvalidInput_Number"][language] << endl; // "ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”."
 		}
 		else {
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // µÚ¿¡ ³²Àº ¿£ÅÍ Á¦°Å
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ë’¤ì— ë‚¨ì€ ì—”í„° ì œê±°
 			if (count < 0) {
-				cout << msgMap["InvalidInput_Negative"][language]; // "À½¼ö´Â ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù."
+				cout << msgMap["InvalidInput_Negative"][language]; // "ìŒìˆ˜ëŠ” ì…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 				continue;
 			}
 			return count;
@@ -274,20 +277,20 @@ int Interface::inputInt(string msgKey) { // Cash Deposit, Check Deposit¿¡¼­ »ç¿ë
 	}
 }
 
-long Interface::inputCheckAmount(string msgKey) { // Check Deposit¿¡¼­ »ç¿ë
+long Interface::inputCheckAmount(string msgKey) { // Check Depositì—ì„œ ì‚¬ìš©
 	long amount;
 	while (true) {
 		cout << msgMap[msgKey][language];
 		cin >> amount;
 		if (cin.fail()) {
-			cin.clear(); // ¿¡·¯ ÇÃ·¡±× ÃÊ±âÈ­--
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ¹öÆÛ ºñ¿ì±â
-			cout << msgMap["InvalidInput_Number"][language] << endl; // "¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä."
+			cin.clear(); // ì—ëŸ¬ í”Œë˜ê·¸ ì´ˆê¸°í™”--
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ë²„í¼ ë¹„ìš°ê¸°
+			cout << msgMap["InvalidInput_Number"][language] << endl; // "ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”."
 		}
 		else {
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // µÚ¿¡ ³²Àº ¿£ÅÍ Á¦°Å
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ë’¤ì— ë‚¨ì€ ì—”í„° ì œê±°
 			if (amount < 0) {
-				cout << msgMap["InvalidInput_Negative"][language]; // "À½¼ö´Â ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù."
+				cout << msgMap["InvalidInput_Negative"][language]; // "ìŒìˆ˜ëŠ” ì…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 				continue;
 			}
 			return amount;
@@ -297,9 +300,9 @@ long Interface::inputCheckAmount(string msgKey) { // Check Deposit¿¡¼­ »ç¿ë
 
 void Interface::totalCheckInfo(int amount, int count) {
 	if (language == "English") {
-		cout << "(Eng.ver)ÇöÀç±îÁö ÀÔ·ÂµÈ ¼öÇ¥ÀÇ ÃÑ¾×:  " << amount << "¿ø\n ÇöÀç±îÁö ÀÔ·ÂµÈ ¼öÇ¥ÀÇ ÃÑ Àå¼ö: " << count << "Àå\n";
+		cout << "(Eng.ver)í˜„ì¬ê¹Œì§€ ì…ë ¥ëœ ìˆ˜í‘œì˜ ì´ì•¡:  " << amount << "ì›\n í˜„ì¬ê¹Œì§€ ì…ë ¥ëœ ìˆ˜í‘œì˜ ì´ ì¥ìˆ˜: " << count << "ì¥\n";
 	}
 	else if (language == "Korean") {
-		cout << "ÇöÀç±îÁö ÀÔ·ÂµÈ ¼öÇ¥ÀÇ ÃÑ¾×:  " << amount << "¿ø\n ÇöÀç±îÁö ÀÔ·ÂµÈ ¼öÇ¥ÀÇ ÃÑ Àå¼ö: " << count << "Àå\n";
+		cout << "í˜„ì¬ê¹Œì§€ ì…ë ¥ëœ ìˆ˜í‘œì˜ ì´ì•¡:  " << amount << "ì›\n í˜„ì¬ê¹Œì§€ ì…ë ¥ëœ ìˆ˜í‘œì˜ ì´ ì¥ìˆ˜: " << count << "ì¥\n";
 	}
 }
