@@ -144,10 +144,10 @@ bool ATM::isValid(string cardNumberInput) {
 
 
 void ATM::addCashToATM(const CashDenominations& deposit) {
-    this->c50k += deposit.c50k;
-    this->c10k += deposit.c10k;
-    this->c5k  += deposit.c5k;
-    this->c1k  += deposit.c1k;
+    availableCash.c50k += deposit.c50k;
+    availableCash.c10k += deposit.c10k;
+    availableCash.c5k  += deposit.c5k;
+    availableCash.c1k  += deposit.c1k;
 }
 
 
