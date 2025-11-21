@@ -12,9 +12,9 @@ private:
 	Bank* pBank;
 	Account* pAccount;
 	Interface& ui;
-	DepositTransaction* deposit;
-	WithdrawalTransaction* withdrawal;
-	TransferTransaction* transfer;
+	Transaction* deposit;
+	Transaction* withdrawal;
+	Transaction* transfer;
 
 
 public:
