@@ -7,31 +7,31 @@
 using namespace std;
 
 void ATM::run() {
-	// 1. È¯¿µ ¸Ş¼¼Áö
+	// 1. í™˜ì˜ ë©”ì„¸ì§€
 	ui.addATMWelcome(this);
 	ui.displayMessage("ATMWelcome");
 
-	// 2. ¾ğ¾î °áÁ¤
+	// 2. ì–¸ì–´ ê²°ì •
 	setLanguage();
 
 	while (true) {
-		// 3. Ä«µå¹øÈ£ ÀÔ·Â ¹Ş±â
+		// 3. ì¹´ë“œë²ˆí˜¸ ì…ë ¥ ë°›ê¸°
 		ui.displayMessage("EnterCardNumber");
 		string cardNumberInput;
 		cin >> cardNumberInput;
 		
-		// 4. ¼¼¼Ç ½ÃÀÛ
+		// 4. ì„¸ì…˜ ì‹œì‘
 		ui.displayMessage("SessionStart");
 		Session* session = new Session(pInit->findBankByCardNumber(cardNumberInput), pInit->findAccountPtrByCardNumber(cardNumberInput), ui);
 
-		// 5. °ü¸®ÀÚ Ä«µå vs °í°´ Ä«µå
-		if (isAdmin(cardNumberInput)) { // °ü¸®ÀÚ Ä«µå
+		// 5. ê´€ë¦¬ì ì¹´ë“œ vs ê³ ê° ì¹´ë“œ
+		if (isAdmin(cardNumberInput)) { // ê´€ë¦¬ì ì¹´ë“œ
 			handleAdminSession();
 			continue;
 		}
-		else if (handleUserSession(cardNumberInput) == false) continue; // °í°´ Ä«µå ¹«È¿ -> 3¹øÀ¸·Î µ¹¾Æ°¡±â
+		else if (handleUserSession(cardNumberInput) == false) continue; // ê³ ê° ì¹´ë“œ ë¬´íš¨ -> 3ë²ˆìœ¼ë¡œ ëŒì•„ê°€ê¸°
 
-		// 6. SessionÀÇ run ÇÔ¼ö ½ÇÇà
+		// 6. Sessionì˜ run í•¨ìˆ˜ ì‹¤í–‰
 		session->run();
 
 		delete session;
@@ -42,10 +42,10 @@ void ATM::run() {
 
 
 //===================================================================
-// run ¿Ü ÇÔ¼öµé
+// run ì™¸ í•¨ìˆ˜ë“¤
 //===================================================================
 ATM::ATM(Bank* primaryBank, const string& serial, const string& t, const string& lang, int cash50k, int cash10k, int cash5k, int cash1k, Initializer* initializer, Interface& uiInput)
-	: pPrimaryBank(primaryBank), serialNumber(serial), type(t), languageMode(lang), c50k(cash50k), c10k(cash10k), c5k(cash5k), c1k(cash1k), adminCardNumber("0000-0000-0000"), atmTransactionHistory(""), pInit(initializer), ui(uiInput), index(1) {} // »ı¼ºÀÚ
+	: pPrimaryBank(primaryBank), serialNumber(serial), type(t), languageMode(lang), c50k(cash50k), c10k(cash10k), c5k(cash5k), c1k(cash1k), adminCardNumber("0000-0000-0000"), atmTransactionHistory(""), pInit(initializer), ui(uiInput), index(1) {} // ìƒì„±ì
 
 void ATM::setLanguage() {
 	if (this->getLanguageMode() == "Bilingual") { // Bilingual
@@ -55,8 +55,8 @@ void ATM::setLanguage() {
 	else { // Unilingual
 		language = "English";
 	}
-	if (language == "¿µ¾î") language = "English";
-	else if (language == "ÇÑ±¹¾î") language = "Korean";
+	if (language == "ì˜ì–´") language = "English";
+	else if (language == "í•œêµ­ì–´") language = "Korean";
 	ui.addLanguageModeNotification(this->getLanguageMode());
 	ui.displayMessage("LanguageModeNotification");
 }
@@ -66,27 +66,27 @@ bool ATM::isAdmin(string cardNumberInput) {
 	else return false;
 }
 
-void ATM::handleAdminSession() { // °ü¸®ÀÚ ¼¼¼Ç
-	// 1. °Å·¡ ³»¿ª ¸Ş´º ¶ç¿ì±â
+void ATM::handleAdminSession() { // ê´€ë¦¬ì ì„¸ì…˜
+	// 1. ê±°ë˜ ë‚´ì—­ ë©”ë‰´ ë„ìš°ê¸°
 	ui.displayMessage("TransactionHistoryMenu");
 
-	// 2. ¼±ÅÃ ÀÔ·Â ¹Ş±â
+	// 2. ì„ íƒ ì…ë ¥ ë°›ê¸°
 	int choice;
 	cin >> choice;
 
 	switch (choice) {
-	case 1: // 1 ÀÔ·ÂµÇ¸é °Å·¡ ±â·Ï ¿­¶÷ ¹× ÆÄÀÏ Á¦ÀÛ
+	case 1: // 1 ì…ë ¥ë˜ë©´ ê±°ë˜ ê¸°ë¡ ì—´ëŒ ë° íŒŒì¼ ì œì‘
 		cout << atmTransactionHistory << endl;
 		ui.displayMessage("writingHistoryToFile");
-		if (writeHistoryToFile(atmTransactionHistory)) { // ÆÄÀÏ ³»º¸³»±â ¼º°ø
+		if (writeHistoryToFile(atmTransactionHistory)) { // íŒŒì¼ ë‚´ë³´ë‚´ê¸° ì„±ê³µ
 			ui.displayMessage("fileWritingSuccess");
 		}
-		else { // ÆÄÀÏ ³»º¸³»±â ½ÇÆĞ
+		else { // íŒŒì¼ ë‚´ë³´ë‚´ê¸° ì‹¤íŒ¨
 			ui.displayMessage("fileWritingFailure");
 		}
 		ui.displayMessage("sessionEnd");
 		break;
-	case 2: // 2 ÀÔ·ÂµÇ¸é Ä«µå ¹øÈ£ ÀÔ·ÂÀ¸·Î µ¹¾Æ°¡±â
+	case 2: // 2 ì…ë ¥ë˜ë©´ ì¹´ë“œ ë²ˆí˜¸ ì…ë ¥ìœ¼ë¡œ ëŒì•„ê°€ê¸°
 		ui.displayMessage("GoBackToEnteringCardNumber");
 		break;
 	default:
@@ -95,33 +95,33 @@ void ATM::handleAdminSession() { // °ü¸®ÀÚ ¼¼¼Ç
 	}
 }
 
-bool ATM::writeHistoryToFile(const string& historyContent) const { // ÆÄÀÏ ³»º¸³»±â
+bool ATM::writeHistoryToFile(const string& historyContent) const { // íŒŒì¼ ë‚´ë³´ë‚´ê¸°
 	string filename = "ATM_" + serialNumber + "_History_" + language + ".txt";
 	ofstream outFile(filename);
 	if (outFile.is_open()) {
-		// 1. ÆÄÀÏ »ó´Ü ³»¿ë Ãß°¡
-		outFile << "[ ATM Information (ATM Á¤º¸) ]" << endl;
-		outFile << "Primary Bank (ÁÖ°Å·¡ÀºÇà): " << pPrimaryBank->getPrimaryBank() << endl;
-		outFile << "ATM Serial (ATM °íÀ¯¹øÈ£): " << serialNumber << endl;
-		outFile << "Type (À¯Çü): " << type << endl;
-		outFile << "Language (¾ğ¾î): " << languageMode << endl;
+		// 1. íŒŒì¼ ìƒë‹¨ ë‚´ìš© ì¶”ê°€
+		outFile << "[ ATM Information (ATM ì •ë³´) ]" << endl;
+		outFile << "Primary Bank (ì£¼ê±°ë˜ì€í–‰): " << pPrimaryBank->getPrimaryBank() << endl;
+		outFile << "ATM Serial (ATM ê³ ìœ ë²ˆí˜¸): " << serialNumber << endl;
+		outFile << "Type (ìœ í˜•): " << type << endl;
+		outFile << "Language (ì–¸ì–´): " << languageMode << endl;
 		outFile << "========================================" << endl;
-		outFile << "[ Transaction History (°Å·¡ ³»¿ª) ]" << endl;
-		// 2. ÆÄÀÏ º»¹® ³»¿ë Ãß°¡
+		outFile << "[ Transaction History (ê±°ë˜ ë‚´ì—­) ]" << endl;
+		// 2. íŒŒì¼ ë³¸ë¬¸ ë‚´ìš© ì¶”ê°€
 		outFile << historyContent;
 		outFile.close();
 		return true;
 	}
 	else {
-		// ÆÄÀÏ ¿­±â ½ÇÆĞ
+		// íŒŒì¼ ì—´ê¸° ì‹¤íŒ¨
 		return false;
 	}
 }
 
-bool ATM::handleUserSession(string cardNumberInput) { // °í°´ ¼¼¼Ç
+bool ATM::handleUserSession(string cardNumberInput) { // ê³ ê° ì„¸ì…˜
 	ui.displayMessage("CheckValidity");
-	if (isSingle()) { // Single ATMÀÏ °æ¿ì
-		if (isValid(cardNumberInput) == false) { // ÁÖ°Å·¡ÀºÇàÀÇ Ä«µåÀÎÁö ÆÇ´Ü
+	if (isSingle()) { // Single ATMì¼ ê²½ìš°
+		if (isValid(cardNumberInput) == false) { // ì£¼ê±°ë˜ì€í–‰ì˜ ì¹´ë“œì¸ì§€ íŒë‹¨
 			ui.displayMessage("IsNotValid");
 			ui.displayMessage("SessionEnd");
 			ui.displayMessage("GoBackToEnteringCardNumber");
@@ -141,3 +141,5 @@ bool ATM::isValid(string cardNumberInput) {
 	if (pInit->findBankByCardNumber(cardNumberInput) == pPrimaryBank) return true;
 	else return false;
 }
+
+///dfgdf
