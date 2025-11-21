@@ -9,7 +9,7 @@ bool Account::addFunds(long amount) {
     if (amount <= 0) {
         return false;  //실패,
     }
-    m_balance += amount;
+    balance += amount;
     return true;
 }
 
@@ -17,8 +17,8 @@ bool Account::deductFunds(long amount) {
     if (amount <= 0 || amount % 1000 != 0) { // 출금 금액은 1000원 단위
         return false;
     }
-    if (m_balance >= amount) {
-        m_balance -= amount;
+    if (balance >= amount) {
+        balance -= amount;
         return true;
     }
     return false; //잔액 부족
