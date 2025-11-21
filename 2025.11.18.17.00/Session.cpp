@@ -52,7 +52,9 @@ void Session::run() {
 //===================================================================
 // run 외 함수들
 //===================================================================
-Session::Session(Bank* pBank, Account* pAccount, Interface& ui) : pBank(pBank), pAccount(pAccount), ui(ui) {
+// Session 인자들 추가했어요 transaction에서 써야 돼요 ㅠ
+Session::Session(Bank* pBank, Account* pAccount, Interface& ui, ATM* atm, map<string, Bank*>& banks) : pBank(pBank), pAccount(pAccount), ui(ui), pATM(atm), allBanks(banks), withdrawalCount(0) 
+{
 	deposit = new DepositTransaction(ui); // 업캐스팅
 	withdrawal = new WithdrawalTransaction(ui);
 	transfer = new TransferTransaction(ui);
