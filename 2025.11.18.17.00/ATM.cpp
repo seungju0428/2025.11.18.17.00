@@ -1,5 +1,6 @@
 #include "ATM.h"
 #include <iostream>
+#include <algorithm>
 #include "Interface.h"
 #include "main.h"
 #include "Initializer.h"
