@@ -8,10 +8,10 @@ Bank::Bank(const string& name)
 }
 
 void Bank::addAccount(Account* pAccount) {
-    accounts[pAccount->getAccountNumber()] = pAccount; // key: °èÁÂ¹øÈ£
+    accounts[pAccount->getAccountNumber()] = pAccount; // key: ê³„ì¢Œë²ˆí˜¸
 }
 
-Bank* Bank::getBankByCardNumber(string cardNumberInput) { // InitializerÀÇ findBankByCardNumber ÇÔ¼ö¿¡¼­ »ç¿ë
+Bank* Bank::getBankByCardNumber(string cardNumberInput) { // Initializerì˜ findBankByCardNumber í•¨ìˆ˜ì—ì„œ ì‚¬ìš©
 	for (auto const& pair : accounts) {
 		Account* pAccount = pair.second;
 		if (cardNumberInput == pAccount->getCardNumber()) {
@@ -31,7 +31,15 @@ Account* Bank::getAccountPtrByCardNumber(string cardNumberInput) {
 	return nullptr;
 }
 
-bool Bank::isCorrectCardPW(Account* pAccount, string cardPWInput) { // SessionÀÇ run ÇÔ¼ö¿¡¼­ »ç¿ë
+bool Bank::isCorrectCardPW(Account* pAccount, string cardPWInput) { // Sessionì˜ run í•¨ìˆ˜ì—ì„œ ì‚¬ìš©
 	if (pAccount->getCardPassword() == cardPWInput) return true;
 	else return false;
+}
+
+Account* Bank::findAccount(string accountNumber) {
+    auto it = accounts.find(accountNumber);
+    if (it != accounts.end()) {
+        return it->second;
+    }
+    return nullptr;
 }
