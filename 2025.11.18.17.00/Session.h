@@ -19,6 +19,11 @@ private:
 
 public:
 	Session(Bank* pBank, Account* pAccount, Interface& ui);
+	// 추가
+	Interface& getUI() { return ui; }
+	Bank* getBank() { return pBank; }
+	Account* getAccount() { return pAccount; }
+	// --
 	void run();
 };
 
