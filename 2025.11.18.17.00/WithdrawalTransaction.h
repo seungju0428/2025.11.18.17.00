@@ -1,13 +1,16 @@
-#ifndef	WITHDRAWALTRANSACTION_H
-#define WITHDRAWALTRANSACTION_H
+#ifndef WITHDRAWAL_TRANSACTION_H
+#define WITHDRAWAL_TRANSACTION_H
 
 #include "Transaction.h"
 
 class WithdrawalTransaction : public Transaction {
-public:
-	void run() override;
+private:
+    bool processSingleWithdrawal();
 
-	WithdrawalTransaction(Interface& uiInput);
+public:
+    WithdrawalTransaction(Session* session);
+    void run() override;
+
 };
 
 #endif
