@@ -225,7 +225,7 @@ void Interface::addMessages() {
 	msgMap["TotalDepositAmountLabel"]["English"] = "Total Deposited: ";
 	msgMap["TotalDepositAmountLabel"]["Korean"] = "총 입금액: ";
 
-	// [추가] 수표 관련 (누락된 부분 보완)
+	// [추가] 수표 관련 
 	msgMap["StartCheckDepositInfo"]["English"] = "Start Check Deposit process.\n";
 	msgMap["StartCheckDepositInfo"]["Korean"] = "수표 입금을 시작합니다.\n";
 	msgMap["PromptCheckAmountLoop"]["English"] = "Enter check amount (0 to finish)\n> ";
