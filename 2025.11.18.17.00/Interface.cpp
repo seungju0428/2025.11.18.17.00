@@ -195,7 +195,7 @@ void Interface::addMessages() {
 	msgMap["CheckInsertionConfirm"]["English"] = "수표 입력 완료!(Eng.ver)\n";
 	msgMap["CheckInsertionConfirm"]["Korean"] = "수표 입력 완료!\n";
 	
-	// [추가] 공통 단위 및 라벨
+
 	msgMap["WonUnit"]["English"] = " KRW";
 	msgMap["WonUnit"]["Korean"] = "원";
 	msgMap["SheetUnit"]["English"] = " sheets";
@@ -203,7 +203,7 @@ void Interface::addMessages() {
 	msgMap["FeeLabel"]["English"] = "Fee: ";
 	msgMap["FeeLabel"]["Korean"] = "수수료: ";
 
-	// [추가] 수수료 관련
+
 	msgMap["FeeNoticePart1"]["English"] = "Transaction Fee: ";
 	msgMap["FeeNoticePart1"]["Korean"] = "수수료 ";
 	msgMap["FeeNoticePart2"]["English"] = " KRW is required.";
@@ -215,7 +215,7 @@ void Interface::addMessages() {
 	msgMap["InsufficientFee"]["English"] = "Insufficient fee inserted.\n";
 	msgMap["InsufficientFee"]["Korean"] = "수수료가 부족합니다.\n";
 
-	// [추가] 입금 관련
+
 	msgMap["DepositSuccess"]["English"] = "Deposit Successful!\n";
 	msgMap["DepositSuccess"]["Korean"] = "입금 성공!\n";
 	msgMap["DepositFailed"]["English"] = "Deposit Failed.\n";
@@ -225,7 +225,7 @@ void Interface::addMessages() {
 	msgMap["TotalDepositAmountLabel"]["English"] = "Total Deposited: ";
 	msgMap["TotalDepositAmountLabel"]["Korean"] = "총 입금액: ";
 
-	// [추가] 수표 관련 
+
 	msgMap["StartCheckDepositInfo"]["English"] = "Start Check Deposit process.\n";
 	msgMap["StartCheckDepositInfo"]["Korean"] = "수표 입금을 시작합니다.\n";
 	msgMap["PromptCheckAmountLoop"]["English"] = "Enter check amount (0 to finish)\n> ";
@@ -243,7 +243,7 @@ void Interface::addMessages() {
 	msgMap["CheckDepositSuccess"]["English"] = "Check Deposit Successful!\n";
 	msgMap["CheckDepositSuccess"]["Korean"] = "수표 입금 성공!\n";
 
-	// [추가] 출금 관련
+
 	msgMap["CurrentBalance"]["English"] = "Current Balance: ";
 	msgMap["CurrentBalance"]["Korean"] = "현재 잔액: ";
 	msgMap["WithdrawalAmountPrompt"]["English"] = "Enter amount to withdraw\n> ";
@@ -273,7 +273,7 @@ void Interface::addMessages() {
 	msgMap["TransactionFailed"]["English"] = "Transaction Failed.\n";
 	msgMap["TransactionFailed"]["Korean"] = "거래 실패.\n";
 
-	// [추가] 이체 관련
+
 	msgMap["TransferOptionMenu"]["English"] = "1. Cash Transfer\n2. Account Transfer\n> ";
 	msgMap["TransferOptionMenu"]["Korean"] = "1. 현금 송금\n2. 계좌 이체\n> ";
 	msgMap["CashTransferInputGuide"]["English"] = "Please insert cash for transfer.\n";
@@ -292,6 +292,9 @@ void Interface::addMessages() {
 	msgMap["TransferAmountLabel"]["Korean"] = "이체 금액: ";
 	msgMap["ReceiverLabel"]["English"] = "Receiver: ";
 	msgMap["ReceiverLabel"]["Korean"] = "받는 분: ";
+
+	msgMap["PressEnter"]["English"] = "Press Enter to continue...";
+    msgMap["PressEnter"]["Korean"] = "계속하려면 엔터 키를 누르세요...";
 	
 }
 
@@ -407,9 +410,10 @@ void Interface::totalCheckInfo(int amount, int count) {
 
 
 void Interface::wait() {
-    cout << "Press Enter to continue...";
-    // 이미 버퍼가 비워져 있다고 가정하거나, 안전하게 처리
-    // cin.ignore가 필요한 상황인지에 따라 다르지만, 보통 getline을 씀
-    char temp;
-    cin.get(temp); 
+    cout << msgMap["PressEnter"][language]; 
+	
+    if (cin.rdbuf()->in_avail() > 0) {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cin.get(); 
 }
